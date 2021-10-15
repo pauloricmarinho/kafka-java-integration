@@ -1,5 +1,8 @@
 ## Integração Java Apache Kafka
 
+[![Java CI with Maven](https://github.com/pauloricmarinho/kafka-java-integration/actions/workflows/maven.yml/badge.svg)](https://github.com/pauloricmarinho/kafka-java-integration/actions/workflows/maven.yml)
+[![Java CI with Maven](https://github.com/pauloricmarinho/kafka-java-integration/actions/workflows/maven.yml/badge.svg)](https://github.com/pauloricmarinho/kafka-java-integration/actions/workflows/maven.yml)
+
 > **Configuração Inicial do Ambiente Apache Kafka**
 
 - Inicialização Apache Zookeeper
