@@ -13,16 +13,6 @@
 > **Nota:** Atualizar o Diretório de Geração dos Logs das Ferramentas **dataDir**.
 
 
-**Projeto :**
-
-```mermaid
-graph LR
-
-A[Produto : Producer] -- msg --> C[Topic : kafka.topics.produtos]
-B[Produto : Consumer] -- msg --> C
-
- ```
-
 **Comandos Básicos :**
 
 1. Criar Tópico
@@ -33,4 +23,61 @@ B[Produto : Consumer] -- msg --> C
 
 **Configurando o Ambiente no Docker**
 
-- Arquivo docker compose disponível em: resources/docker/
+- Arquivo docker compose disponível em: *resources/docker/kafka-docker-single-node.yml*
+- Inicializar os Serviços do **Zookeeper** e **Kafka**
+
+
+	`docker-compose -f kafka-docker-single-node.yml up -d`
+
+-  Remover os Serviços
+
+	`docker-compose -f kafka-single-node.yml down`
+
+- Acessar o Terminal do Serviço do **kafka-broker**
+
+	`docker exec -it kafka-broker /bin/bash`
+	`cd /opt/bitnami/kafka/bin`
+
+
+- Criar Novo Tópico  
+  
+        ./kafka-topics.sh \  
+            --zookeeper zookeeper:2181 \  
+            --create \  
+            --topic MEU_TOPICO_TESTE \  
+            --partitions 1 \  
+            --replication-factor 1   
+  
+- Listando Tópicos
+  
+        ./kafka-topics.sh \  
+            --zookeeper zookeeper:2181 \  
+            --list  
+  
+- Detalhes dos Tópicos 
+  
+        ./kafka-topics.sh \  
+            --zookeeper zookeeper:2181 \  
+            --describe  
+  
+  
+- Publicando Mensagens  
+  
+        ./kafka-console-producer.sh \  
+            --bootstrap-server localhost:29092 \  
+            --topic MEU_TOPICO_TESTE  
+  
+- Consumindo Mensagens   
+  
+        ./kafka-console-consumer.sh \  
+            --bootstrap-server localhost:29092 \  
+            --topic MEU_TOPICO_TESTE  \  
+            --from-beginning  
+        
+- Deletando um Topico  
+  
+        ./kafka-topics.sh \  
+            --zookeeper zookeeper:2181 \  
+            --delete \  
+            --topic MEU_TOPICO_TESTE 
+
